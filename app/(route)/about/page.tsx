@@ -1,33 +1,48 @@
-"use client";
-
-import { useState } from "react";
-import ActivityRecords, {
-  CoreValue,
-  CurriCulum,
-  Executives,
-} from "@/hooks/about";
 import Footer from "@/components/footer";
 import { records, corevalue } from "@/constants/about";
 import Image from "next/image";
+import Curriculum from "@/app/(route)/about/_components/curriculum";
+import {
+  ActivityRecords,
+  CoreValueData,
+  Executive,
+} from "@/app/(route)/about/types";
 
-const AboutPage = () => {
-  const { data: coreValueData } = CoreValue();
-  const { data: curriCulumData } = CurriCulum();
-  const { data: executivesData } = Executives();
-  const { data: activityData } = ActivityRecords();
+const AboutPage = async () => {
+  async function getCoreValue() {
+    const res = await fetch("http://localhost:3000/api/about/corevalue");
+    return res.json();
+  }
 
-  const coreValue = coreValueData?.coreValue;
-  const executives = executivesData?.executives;
-  const activityRecords = activityData?.activity_records;
-  const curriculumKey = curriCulumData ? Object.keys(curriCulumData) : null;
+  async function getCurriculum() {
+    const res = await fetch("http://localhost:3000/api/about/curriculum");
+    return res.json();
+  }
 
-  const [curriculum, setCurriculum] = useState("plan");
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setCurriculum(e.currentTarget.innerText);
-  };
+  async function getExecutives() {
+    const res = await fetch("http://localhost:3000/api/about/executives");
+    return res.json();
+  }
+
+  async function getActivityRecords() {
+    const res = await fetch("http://localhost:3000/api/about/activityrecords");
+    return res.json();
+  }
+
+  const [coreValueData, curriCulumData, executivesData, activityData] =
+    await Promise.all([
+      getCoreValue(),
+      getCurriculum(),
+      getExecutives(),
+      getActivityRecords(),
+    ]);
+
+  const coreValue = coreValueData?.coreValue as CoreValueData;
+  const executives = executivesData?.executives as Executive[];
+  const activityRecords = activityData?.activity_records as ActivityRecords;
 
   return (
-    <div className=" w-full bg-black text-white">
+    <div className="w-full bg-black text-white">
       <section className="pt-[150px]">
         <div className="flex flex-col justify-center items-center">
           <span className="text-[rgb(105,105,105)] text-[9px] sm:text-[14px] md:text-[17px]">
@@ -54,7 +69,7 @@ const AboutPage = () => {
                   src={corevalue[idx].src}
                   width={230}
                   height={230}
-                  className="group-hover:blur-sm "
+                  className="group-hover:blur-sm"
                 />
               </div>
               <div className="relative flex flex-col w-[237px] opacity-0 group-hover:opacity-100 text-2xl text-center transition-opacity duration-400">
@@ -65,49 +80,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="flex flex-col justify-center items-center gap-[48px] mt-[275px]">
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-[rgb(105,105,105)] text-[9px] sm:text-[14px] md:text-[17px]">
-            Curriculum
-          </span>
-          <div className="text-[15px] sm:text-[22px] md:text-[29px]">
-            {curriCulumData?.title}
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-[33px] w-full ">
-          <div className="flex flex-wrap justify-center w-[429px] sm:w-[502px] md:w-full gap-[26px]">
-            {curriculumKey
-              ?.filter((key) => key !== "title")
-              .map((item) => (
-                <button
-                  className={`w-[92px] sm:w-[150px] md:w-[12%] xl:w-[156px] h-[31px] sm:h-[60px] text-[10px] sm:text-[20px] text-[rgb(105,105,105)]  ${
-                    curriculum === item
-                      ? "bg-[rgb(34,34,32)] rounded-sm text-white font-bold"
-                      : null
-                  }  cursor-pointer`}
-                  key={item}
-                  onClick={onClick}
-                >
-                  {item}
-                </button>
-              ))}
-          </div>
-          <div className="flex flex-col items-center w-full">
-            <ul className="flex flex-col items-center gap-3 flex-nowrap w-[100%] sm:px-[70px] pt-[30px] sm:pt-[70px] ">
-              {curriculum &&
-                curriCulumData?.[curriculum]?.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-center w-[270px] sm:w-[430px] md:w-[697px] h-[38px] sm:h-[72px] text-[14px] sm:text-[20px] md:text-[25px] bg-[rgb(34,37,40)] rounded-sm pl-[20px] whitespace-nowrap"
-                  >
-                    0{item.id}&nbsp;
-                    {item.value}
-                  </li>
-                ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      <Curriculum data={curriCulumData} />
 
       <section className="flex flex-col items-center gap-15">
         <div className="flex flex-col items-center justify-center mt-[275px]">
@@ -147,14 +120,14 @@ const AboutPage = () => {
 
       <section className="mt-[275px] mb-[200px] md:mb-[340px]">
         <div className="flex flex-col items-center justify-center mt-[275px]">
-          <span className=" text-[9px] sm:text-[14px] md:text-[17px] text-[rgb(105,105,105)]">
+          <span className="text-[9px] sm:text-[14px] md:text-[17px] text-[rgb(105,105,105)]">
             Activity Records
           </span>
           <h1 className="text-[15px] sm:text-[22px] md:text-[29px]">
             1기 활동 레코드
           </h1>
         </div>
-        <div className="flex flex-wrap md:flex-nowrap justify-center  md:gap-[30px] mt-12 w-full px-[20px]">
+        <div className="flex flex-wrap md:flex-nowrap justify-center md:gap-[30px] mt-12 w-full px-[20px]">
           {activityRecords &&
             Object.values(activityRecords).map((item, idx) => (
               <div key={idx} className="w-full xl:w-[380px]">

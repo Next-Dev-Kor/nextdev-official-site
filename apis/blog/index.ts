@@ -1,17 +1,12 @@
-import axios from "axios";
-import { ArticlesResponse, ActivitiesResponse } from "@/app/(route)/blog/types";
+export async function getArticles() {
+  const res = await fetch("http://localhost:3000/api/blog/article");
+  return res.json();
+}
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "";
-
-const getArticles = async (): Promise<ArticlesResponse> => {
-  const response = await axios.get(`${baseURL}/api/blog/article`);
-  return response.data;
-};
-
-const getActivities = async (): Promise<ActivitiesResponse> => {
-  const response = await axios.get(`${baseURL}/api/blog/activity`);
-  return response.data;
-};
+export async function getActivities() {
+  const res = await fetch("http://localhost:3000/api/blog/activity");
+  return res.json();
+}
 
 const BlogAPIs = {
   getArticles,

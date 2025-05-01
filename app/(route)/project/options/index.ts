@@ -1,5 +1,5 @@
 import ProjectAPIs from "@/apis/project";
-import { DeployProjectResponse } from "@/features/project/types";
+import { DeployProjectResponse } from "@/app/(route)/project/types";
 
 export const recentDeployProjectOptions = {
   queryKey: ["recent-deploy-project"] as const,
@@ -8,8 +8,8 @@ export const recentDeployProjectOptions = {
 
 export const deployCardsOptions = (type?: "APP" | "WEB" | "ALL") =>
   ({
-    queryKey: ["deploy-cards"],
-    queryFn: ProjectAPIs.getDeployCards,
+    queryKey: ["deploy-cards", type] as const,
+    queryFn: () => ProjectAPIs.getDeployCards(type),
     select: (data: DeployProjectResponse) => {
       if (!type || type === "ALL") {
         return data;
@@ -19,4 +19,4 @@ export const deployCardsOptions = (type?: "APP" | "WEB" | "ALL") =>
         projects: data.projects.filter((project) => project.type === type),
       };
     },
-  }) as const;
+  } as const);

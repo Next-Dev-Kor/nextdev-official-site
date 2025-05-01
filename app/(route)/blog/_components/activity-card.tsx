@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Activity } from "@/app/(route)/blog/types";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const ActivityCard = ({
   category,
@@ -27,7 +26,7 @@ const ActivityCard = ({
           </div>
         </div>
         <div className="w-[240px] p-6">
-          <Skeleton className="w-full h-[160px]" />
+          <div className="w-full h-[160px] bg-muted rounded-lg" />
         </div>
       </div>
     </Card>

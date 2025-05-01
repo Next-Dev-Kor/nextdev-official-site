@@ -1,22 +1,18 @@
+"use client";
+
 import { Article } from "@/app/(route)/blog/types";
-import { Skeleton } from "@/components/ui/skeleton";
 import ArticleCard from "@/app/(route)/blog/_components/article-card";
 
 interface ArticlesProps {
-  articles?: Article[];
-  loading: boolean;
+  articles: Article[];
 }
 
-const Articles = ({ articles = [], loading }: ArticlesProps) => {
+const Articles = ({ articles }: ArticlesProps) => {
   return (
-    <div className="flex flex-col gap-4">
-      {loading
-        ? Array.from({ length: 10 }).map((_, index) => (
-            <Skeleton key={index} className="w-full h-[100px]" />
-          ))
-        : articles.map((article) => (
-            <ArticleCard key={article.id} {...article} />
-          ))}
+    <div className="flex flex-col gap-4 w-full">
+      {articles.map((article) => (
+        <ArticleCard key={article.id} {...article} />
+      ))}
     </div>
   );
 };

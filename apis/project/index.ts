@@ -12,8 +12,12 @@ const getRecentDeployProject =
     return response.data;
   };
 
-const getDeployCards = async (): Promise<DeployProjectResponse> => {
-  const response = await axios.get(`${baseURL}/api/project/deploy`);
+const getDeployCards = async (
+  type?: "APP" | "WEB" | "ALL"
+): Promise<DeployProjectResponse> => {
+  const response = await axios.get(`${baseURL}/api/project/deploy`, {
+    params: { type },
+  });
   return response.data;
 };
 

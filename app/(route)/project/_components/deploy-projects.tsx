@@ -1,6 +1,5 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
 import { DeployProjectResponse } from "@/app/(route)/project/types";
 import DeployCard from "@/app/(route)/project/_components/deploy-card";
 import {
@@ -11,22 +10,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "lucide-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 
 interface DeployProjectsProps {
-  data: DeployProjectResponse;
-  loading: boolean;
-  selectedType: "APP" | "WEB" | "ALL";
-  onTypeChange: Dispatch<SetStateAction<"APP" | "WEB" | "ALL">>;
+  initialData: DeployProjectResponse;
 }
 
-const DeployProjects = ({
-  data,
-  loading,
-  selectedType,
-  onTypeChange,
-}: DeployProjectsProps) => {
+const DeployProjects = ({ initialData }: DeployProjectsProps) => {
+  const [selectedType, setSelectedType] = useState<"APP" | "WEB" | "ALL">(
+    "ALL"
+  );
   const [isOpen, setIsOpen] = useState(false);
+
+  const filteredProjects =
+    selectedType === "ALL"
+      ? initialData.projects
+      : initialData.projects.filter((project) => project.type === selectedType);
 
   return (
     <div className="flex flex-col gap-4">
@@ -43,28 +42,19 @@ const DeployProjects = ({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => onTypeChange("ALL")}>
+          <DropdownMenuItem onClick={() => setSelectedType("ALL")}>
             전체
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onTypeChange("WEB")}>
+          <DropdownMenuItem onClick={() => setSelectedType("WEB")}>
             Web
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onTypeChange("APP")}>
+          <DropdownMenuItem onClick={() => setSelectedType("APP")}>
             App
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4">
-        {loading ? (
-          Array.from({ length: 12 }).map((_, index) => (
-            <Skeleton
-              key={index}
-              className="w-full h-[124px] bg-gray-200 animate-pulse"
-            />
-          ))
-        ) : (
-          <DeployCard data={data.projects} />
-        )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <DeployCard data={filteredProjects} />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import {
 import {
   RecentDeployProject,
   RecentDeployProjectResponse,
-} from "@/features/project/types";
+} from "@/app/(route)/project/types";
 
 const RecentDeployCards = ({ data }: { data: RecentDeployProjectResponse }) => {
   return (
