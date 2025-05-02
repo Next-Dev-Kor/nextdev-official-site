@@ -1,8 +1,10 @@
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
+import type { Session, User, Account } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import prisma from "@/lib/db";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     KakaoProvider({
       clientId: process.env.KAKAO_CLIENT_ID!,
@@ -10,11 +12,11 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user }: { user: User }) {
       try {
         const email = user.email ?? `${user.name}@kakao.fake`;
 
-        await prisma.user.upsert({
+        const dbUser = await prisma.user.upsert({
           where: { email },
           update: {
             nickname: user.name ?? "Unknown",
@@ -29,6 +31,8 @@ const handler = NextAuth({
           },
         });
 
+        user.id = dbUser.id.toString();
+
         return true;
       } catch (error) {
         console.error("❌ Error in signIn callback:", error);
@@ -36,18 +40,31 @@ const handler = NextAuth({
       }
     },
 
-    async jwt({ token, account }) {
+    async jwt({
+      token,
+      user,
+      account,
+    }: {
+      token: JWT;
+      user?: User;
+      account?: Account | null;
+    }) {
+      if (user) {
+        token.id = user.id!;
+      }
       if (account?.access_token) {
         token.accessToken = account.access_token;
       }
       return token;
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       session.accessToken = token.accessToken as string;
+      session.user.id = token.id as string;
       return session;
     },
   },
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
