@@ -12,8 +12,11 @@ const ArticleCard = ({
 }: Article) => {
   return (
     <Card>
-      <div className="flex">
-        <div className="flex-1 p-6">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-[240px] p-6 order-2 md:order-1">
+          <Skeleton className="w-full h-[160px]" />
+        </div>
+        <div className="flex-1 p-6 order-1 md:order-2">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <Badge variant="outline">{type}</Badge>
@@ -31,9 +34,6 @@ const ArticleCard = ({
               ))}
             </div>
           </div>
-        </div>
-        <div className="w-[240px] p-6">
-          <Skeleton className="w-full h-[160px]" />
         </div>
       </div>
     </Card>

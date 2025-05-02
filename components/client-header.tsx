@@ -95,6 +95,7 @@ const ClientHeader = ({ session }: ClientHeaderProps) => {
                 <div
                   key={menu.id}
                   className="cursor-pointer hover:text-primary transition-colors"
+                  onClick={() => setOpen(false)}
                 >
                   <Link href={menu.href}>{menu.title}</Link>
                 </div>
