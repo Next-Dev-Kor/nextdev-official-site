@@ -19,11 +19,13 @@ const handler = NextAuth({
           update: {
             nickname: user.name ?? "Unknown",
             profileImage: user.image ?? null,
+            role: "SUPER",
           },
           create: {
             email,
             nickname: user.name ?? "Unknown",
             profileImage: user.image ?? null,
+            role: "SUPER",
           },
         });
 

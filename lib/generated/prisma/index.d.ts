@@ -18,6 +18,34 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model RecruitPost
+ * 
+ */
+export type RecruitPost = $Result.DefaultSelection<Prisma.$RecruitPostPayload>
+/**
+ * Model Applicant
+ * 
+ */
+export type Applicant = $Result.DefaultSelection<Prisma.$ApplicantPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const UserRole: {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+  SUPER: 'SUPER'
+};
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+}
+
+export type UserRole = $Enums.UserRole
+
+export const UserRole: typeof $Enums.UserRole
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +181,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.recruitPost`: Exposes CRUD operations for the **RecruitPost** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RecruitPosts
+    * const recruitPosts = await prisma.recruitPost.findMany()
+    * ```
+    */
+  get recruitPost(): Prisma.RecruitPostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.applicant`: Exposes CRUD operations for the **Applicant** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Applicants
+    * const applicants = await prisma.applicant.findMany()
+    * ```
+    */
+  get applicant(): Prisma.ApplicantDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +641,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    RecruitPost: 'RecruitPost',
+    Applicant: 'Applicant'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +662,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "recruitPost" | "applicant"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +737,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      RecruitPost: {
+        payload: Prisma.$RecruitPostPayload<ExtArgs>
+        fields: Prisma.RecruitPostFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RecruitPostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RecruitPostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>
+          }
+          findFirst: {
+            args: Prisma.RecruitPostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RecruitPostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>
+          }
+          findMany: {
+            args: Prisma.RecruitPostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>[]
+          }
+          create: {
+            args: Prisma.RecruitPostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>
+          }
+          createMany: {
+            args: Prisma.RecruitPostCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RecruitPostCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>[]
+          }
+          delete: {
+            args: Prisma.RecruitPostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>
+          }
+          update: {
+            args: Prisma.RecruitPostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>
+          }
+          deleteMany: {
+            args: Prisma.RecruitPostDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RecruitPostUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RecruitPostUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>[]
+          }
+          upsert: {
+            args: Prisma.RecruitPostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecruitPostPayload>
+          }
+          aggregate: {
+            args: Prisma.RecruitPostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRecruitPost>
+          }
+          groupBy: {
+            args: Prisma.RecruitPostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RecruitPostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RecruitPostCountArgs<ExtArgs>
+            result: $Utils.Optional<RecruitPostCountAggregateOutputType> | number
+          }
+        }
+      }
+      Applicant: {
+        payload: Prisma.$ApplicantPayload<ExtArgs>
+        fields: Prisma.ApplicantFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApplicantFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApplicantFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>
+          }
+          findFirst: {
+            args: Prisma.ApplicantFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApplicantFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>
+          }
+          findMany: {
+            args: Prisma.ApplicantFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>[]
+          }
+          create: {
+            args: Prisma.ApplicantCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>
+          }
+          createMany: {
+            args: Prisma.ApplicantCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApplicantCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>[]
+          }
+          delete: {
+            args: Prisma.ApplicantDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>
+          }
+          update: {
+            args: Prisma.ApplicantUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>
+          }
+          deleteMany: {
+            args: Prisma.ApplicantDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApplicantUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApplicantUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>[]
+          }
+          upsert: {
+            args: Prisma.ApplicantUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApplicantPayload>
+          }
+          aggregate: {
+            args: Prisma.ApplicantAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApplicant>
+          }
+          groupBy: {
+            args: Prisma.ApplicantGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApplicantGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApplicantCountArgs<ExtArgs>
+            result: $Utils.Optional<ApplicantCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +973,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    recruitPost?: RecruitPostOmit
+    applicant?: ApplicantOmit
   }
 
   /* Types for Logging */
@@ -864,6 +1064,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type RecruitPostCountOutputType
+   */
+
+  export type RecruitPostCountOutputType = {
+    applicants: number
+  }
+
+  export type RecruitPostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    applicants?: boolean | RecruitPostCountOutputTypeCountApplicantsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RecruitPostCountOutputType without action
+   */
+  export type RecruitPostCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPostCountOutputType
+     */
+    select?: RecruitPostCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RecruitPostCountOutputType without action
+   */
+  export type RecruitPostCountOutputTypeCountApplicantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApplicantWhereInput
+  }
+
 
   /**
    * Models
@@ -895,6 +1125,7 @@ export namespace Prisma {
     nickname: string | null
     phoneNumber: string | null
     profileImage: string | null
+    role: $Enums.UserRole | null
     createdAt: Date | null
   }
 
@@ -904,6 +1135,7 @@ export namespace Prisma {
     nickname: string | null
     phoneNumber: string | null
     profileImage: string | null
+    role: $Enums.UserRole | null
     createdAt: Date | null
   }
 
@@ -913,6 +1145,7 @@ export namespace Prisma {
     nickname: number
     phoneNumber: number
     profileImage: number
+    role: number
     createdAt: number
     _all: number
   }
@@ -932,6 +1165,7 @@ export namespace Prisma {
     nickname?: true
     phoneNumber?: true
     profileImage?: true
+    role?: true
     createdAt?: true
   }
 
@@ -941,6 +1175,7 @@ export namespace Prisma {
     nickname?: true
     phoneNumber?: true
     profileImage?: true
+    role?: true
     createdAt?: true
   }
 
@@ -950,6 +1185,7 @@ export namespace Prisma {
     nickname?: true
     phoneNumber?: true
     profileImage?: true
+    role?: true
     createdAt?: true
     _all?: true
   }
@@ -1046,6 +1282,7 @@ export namespace Prisma {
     nickname: string
     phoneNumber: string | null
     profileImage: string | null
+    role: $Enums.UserRole
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -1074,6 +1311,7 @@ export namespace Prisma {
     nickname?: boolean
     phoneNumber?: boolean
     profileImage?: boolean
+    role?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1083,6 +1321,7 @@ export namespace Prisma {
     nickname?: boolean
     phoneNumber?: boolean
     profileImage?: boolean
+    role?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1092,6 +1331,7 @@ export namespace Prisma {
     nickname?: boolean
     phoneNumber?: boolean
     profileImage?: boolean
+    role?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1101,10 +1341,11 @@ export namespace Prisma {
     nickname?: boolean
     phoneNumber?: boolean
     profileImage?: boolean
+    role?: boolean
     createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "nickname" | "phoneNumber" | "profileImage" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "nickname" | "phoneNumber" | "profileImage" | "role" | "createdAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1115,6 +1356,7 @@ export namespace Prisma {
       nickname: string
       phoneNumber: string | null
       profileImage: string | null
+      role: $Enums.UserRole
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1544,6 +1786,7 @@ export namespace Prisma {
     readonly nickname: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
     readonly profileImage: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'UserRole'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -1912,6 +2155,2245 @@ export namespace Prisma {
 
 
   /**
+   * Model RecruitPost
+   */
+
+  export type AggregateRecruitPost = {
+    _count: RecruitPostCountAggregateOutputType | null
+    _avg: RecruitPostAvgAggregateOutputType | null
+    _sum: RecruitPostSumAggregateOutputType | null
+    _min: RecruitPostMinAggregateOutputType | null
+    _max: RecruitPostMaxAggregateOutputType | null
+  }
+
+  export type RecruitPostAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RecruitPostSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RecruitPostMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    thumbnailUrl: string | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+  }
+
+  export type RecruitPostMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    thumbnailUrl: string | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+  }
+
+  export type RecruitPostCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    thumbnailUrl: number
+    startDate: number
+    endDate: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RecruitPostAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type RecruitPostSumAggregateInputType = {
+    id?: true
+  }
+
+  export type RecruitPostMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    thumbnailUrl?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+  }
+
+  export type RecruitPostMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    thumbnailUrl?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+  }
+
+  export type RecruitPostCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    thumbnailUrl?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RecruitPostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RecruitPost to aggregate.
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecruitPosts to fetch.
+     */
+    orderBy?: RecruitPostOrderByWithRelationInput | RecruitPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RecruitPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecruitPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecruitPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RecruitPosts
+    **/
+    _count?: true | RecruitPostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RecruitPostAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RecruitPostSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RecruitPostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RecruitPostMaxAggregateInputType
+  }
+
+  export type GetRecruitPostAggregateType<T extends RecruitPostAggregateArgs> = {
+        [P in keyof T & keyof AggregateRecruitPost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRecruitPost[P]>
+      : GetScalarType<T[P], AggregateRecruitPost[P]>
+  }
+
+
+
+
+  export type RecruitPostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecruitPostWhereInput
+    orderBy?: RecruitPostOrderByWithAggregationInput | RecruitPostOrderByWithAggregationInput[]
+    by: RecruitPostScalarFieldEnum[] | RecruitPostScalarFieldEnum
+    having?: RecruitPostScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RecruitPostCountAggregateInputType | true
+    _avg?: RecruitPostAvgAggregateInputType
+    _sum?: RecruitPostSumAggregateInputType
+    _min?: RecruitPostMinAggregateInputType
+    _max?: RecruitPostMaxAggregateInputType
+  }
+
+  export type RecruitPostGroupByOutputType = {
+    id: number
+    title: string
+    description: string
+    thumbnailUrl: string | null
+    startDate: Date
+    endDate: Date
+    createdAt: Date
+    _count: RecruitPostCountAggregateOutputType | null
+    _avg: RecruitPostAvgAggregateOutputType | null
+    _sum: RecruitPostSumAggregateOutputType | null
+    _min: RecruitPostMinAggregateOutputType | null
+    _max: RecruitPostMaxAggregateOutputType | null
+  }
+
+  type GetRecruitPostGroupByPayload<T extends RecruitPostGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RecruitPostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RecruitPostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RecruitPostGroupByOutputType[P]>
+            : GetScalarType<T[P], RecruitPostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RecruitPostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    applicants?: boolean | RecruitPost$applicantsArgs<ExtArgs>
+    _count?: boolean | RecruitPostCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recruitPost"]>
+
+  export type RecruitPostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["recruitPost"]>
+
+  export type RecruitPostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["recruitPost"]>
+
+  export type RecruitPostSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+  }
+
+  export type RecruitPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "thumbnailUrl" | "startDate" | "endDate" | "createdAt", ExtArgs["result"]["recruitPost"]>
+  export type RecruitPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    applicants?: boolean | RecruitPost$applicantsArgs<ExtArgs>
+    _count?: boolean | RecruitPostCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type RecruitPostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type RecruitPostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $RecruitPostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RecruitPost"
+    objects: {
+      applicants: Prisma.$ApplicantPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      description: string
+      thumbnailUrl: string | null
+      startDate: Date
+      endDate: Date
+      createdAt: Date
+    }, ExtArgs["result"]["recruitPost"]>
+    composites: {}
+  }
+
+  type RecruitPostGetPayload<S extends boolean | null | undefined | RecruitPostDefaultArgs> = $Result.GetResult<Prisma.$RecruitPostPayload, S>
+
+  type RecruitPostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RecruitPostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RecruitPostCountAggregateInputType | true
+    }
+
+  export interface RecruitPostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RecruitPost'], meta: { name: 'RecruitPost' } }
+    /**
+     * Find zero or one RecruitPost that matches the filter.
+     * @param {RecruitPostFindUniqueArgs} args - Arguments to find a RecruitPost
+     * @example
+     * // Get one RecruitPost
+     * const recruitPost = await prisma.recruitPost.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RecruitPostFindUniqueArgs>(args: SelectSubset<T, RecruitPostFindUniqueArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RecruitPost that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RecruitPostFindUniqueOrThrowArgs} args - Arguments to find a RecruitPost
+     * @example
+     * // Get one RecruitPost
+     * const recruitPost = await prisma.recruitPost.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RecruitPostFindUniqueOrThrowArgs>(args: SelectSubset<T, RecruitPostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RecruitPost that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostFindFirstArgs} args - Arguments to find a RecruitPost
+     * @example
+     * // Get one RecruitPost
+     * const recruitPost = await prisma.recruitPost.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RecruitPostFindFirstArgs>(args?: SelectSubset<T, RecruitPostFindFirstArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RecruitPost that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostFindFirstOrThrowArgs} args - Arguments to find a RecruitPost
+     * @example
+     * // Get one RecruitPost
+     * const recruitPost = await prisma.recruitPost.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RecruitPostFindFirstOrThrowArgs>(args?: SelectSubset<T, RecruitPostFindFirstOrThrowArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RecruitPosts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RecruitPosts
+     * const recruitPosts = await prisma.recruitPost.findMany()
+     * 
+     * // Get first 10 RecruitPosts
+     * const recruitPosts = await prisma.recruitPost.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const recruitPostWithIdOnly = await prisma.recruitPost.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RecruitPostFindManyArgs>(args?: SelectSubset<T, RecruitPostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RecruitPost.
+     * @param {RecruitPostCreateArgs} args - Arguments to create a RecruitPost.
+     * @example
+     * // Create one RecruitPost
+     * const RecruitPost = await prisma.recruitPost.create({
+     *   data: {
+     *     // ... data to create a RecruitPost
+     *   }
+     * })
+     * 
+     */
+    create<T extends RecruitPostCreateArgs>(args: SelectSubset<T, RecruitPostCreateArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RecruitPosts.
+     * @param {RecruitPostCreateManyArgs} args - Arguments to create many RecruitPosts.
+     * @example
+     * // Create many RecruitPosts
+     * const recruitPost = await prisma.recruitPost.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RecruitPostCreateManyArgs>(args?: SelectSubset<T, RecruitPostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RecruitPosts and returns the data saved in the database.
+     * @param {RecruitPostCreateManyAndReturnArgs} args - Arguments to create many RecruitPosts.
+     * @example
+     * // Create many RecruitPosts
+     * const recruitPost = await prisma.recruitPost.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RecruitPosts and only return the `id`
+     * const recruitPostWithIdOnly = await prisma.recruitPost.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RecruitPostCreateManyAndReturnArgs>(args?: SelectSubset<T, RecruitPostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RecruitPost.
+     * @param {RecruitPostDeleteArgs} args - Arguments to delete one RecruitPost.
+     * @example
+     * // Delete one RecruitPost
+     * const RecruitPost = await prisma.recruitPost.delete({
+     *   where: {
+     *     // ... filter to delete one RecruitPost
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RecruitPostDeleteArgs>(args: SelectSubset<T, RecruitPostDeleteArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RecruitPost.
+     * @param {RecruitPostUpdateArgs} args - Arguments to update one RecruitPost.
+     * @example
+     * // Update one RecruitPost
+     * const recruitPost = await prisma.recruitPost.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RecruitPostUpdateArgs>(args: SelectSubset<T, RecruitPostUpdateArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RecruitPosts.
+     * @param {RecruitPostDeleteManyArgs} args - Arguments to filter RecruitPosts to delete.
+     * @example
+     * // Delete a few RecruitPosts
+     * const { count } = await prisma.recruitPost.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RecruitPostDeleteManyArgs>(args?: SelectSubset<T, RecruitPostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RecruitPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RecruitPosts
+     * const recruitPost = await prisma.recruitPost.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RecruitPostUpdateManyArgs>(args: SelectSubset<T, RecruitPostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RecruitPosts and returns the data updated in the database.
+     * @param {RecruitPostUpdateManyAndReturnArgs} args - Arguments to update many RecruitPosts.
+     * @example
+     * // Update many RecruitPosts
+     * const recruitPost = await prisma.recruitPost.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RecruitPosts and only return the `id`
+     * const recruitPostWithIdOnly = await prisma.recruitPost.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RecruitPostUpdateManyAndReturnArgs>(args: SelectSubset<T, RecruitPostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RecruitPost.
+     * @param {RecruitPostUpsertArgs} args - Arguments to update or create a RecruitPost.
+     * @example
+     * // Update or create a RecruitPost
+     * const recruitPost = await prisma.recruitPost.upsert({
+     *   create: {
+     *     // ... data to create a RecruitPost
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RecruitPost we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RecruitPostUpsertArgs>(args: SelectSubset<T, RecruitPostUpsertArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RecruitPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostCountArgs} args - Arguments to filter RecruitPosts to count.
+     * @example
+     * // Count the number of RecruitPosts
+     * const count = await prisma.recruitPost.count({
+     *   where: {
+     *     // ... the filter for the RecruitPosts we want to count
+     *   }
+     * })
+    **/
+    count<T extends RecruitPostCountArgs>(
+      args?: Subset<T, RecruitPostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RecruitPostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RecruitPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RecruitPostAggregateArgs>(args: Subset<T, RecruitPostAggregateArgs>): Prisma.PrismaPromise<GetRecruitPostAggregateType<T>>
+
+    /**
+     * Group by RecruitPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecruitPostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RecruitPostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RecruitPostGroupByArgs['orderBy'] }
+        : { orderBy?: RecruitPostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RecruitPostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRecruitPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RecruitPost model
+   */
+  readonly fields: RecruitPostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RecruitPost.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RecruitPostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    applicants<T extends RecruitPost$applicantsArgs<ExtArgs> = {}>(args?: Subset<T, RecruitPost$applicantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RecruitPost model
+   */
+  interface RecruitPostFieldRefs {
+    readonly id: FieldRef<"RecruitPost", 'Int'>
+    readonly title: FieldRef<"RecruitPost", 'String'>
+    readonly description: FieldRef<"RecruitPost", 'String'>
+    readonly thumbnailUrl: FieldRef<"RecruitPost", 'String'>
+    readonly startDate: FieldRef<"RecruitPost", 'DateTime'>
+    readonly endDate: FieldRef<"RecruitPost", 'DateTime'>
+    readonly createdAt: FieldRef<"RecruitPost", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RecruitPost findUnique
+   */
+  export type RecruitPostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * Filter, which RecruitPost to fetch.
+     */
+    where: RecruitPostWhereUniqueInput
+  }
+
+  /**
+   * RecruitPost findUniqueOrThrow
+   */
+  export type RecruitPostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * Filter, which RecruitPost to fetch.
+     */
+    where: RecruitPostWhereUniqueInput
+  }
+
+  /**
+   * RecruitPost findFirst
+   */
+  export type RecruitPostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * Filter, which RecruitPost to fetch.
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecruitPosts to fetch.
+     */
+    orderBy?: RecruitPostOrderByWithRelationInput | RecruitPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RecruitPosts.
+     */
+    cursor?: RecruitPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecruitPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecruitPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecruitPosts.
+     */
+    distinct?: RecruitPostScalarFieldEnum | RecruitPostScalarFieldEnum[]
+  }
+
+  /**
+   * RecruitPost findFirstOrThrow
+   */
+  export type RecruitPostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * Filter, which RecruitPost to fetch.
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecruitPosts to fetch.
+     */
+    orderBy?: RecruitPostOrderByWithRelationInput | RecruitPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RecruitPosts.
+     */
+    cursor?: RecruitPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecruitPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecruitPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecruitPosts.
+     */
+    distinct?: RecruitPostScalarFieldEnum | RecruitPostScalarFieldEnum[]
+  }
+
+  /**
+   * RecruitPost findMany
+   */
+  export type RecruitPostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * Filter, which RecruitPosts to fetch.
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecruitPosts to fetch.
+     */
+    orderBy?: RecruitPostOrderByWithRelationInput | RecruitPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RecruitPosts.
+     */
+    cursor?: RecruitPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecruitPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecruitPosts.
+     */
+    skip?: number
+    distinct?: RecruitPostScalarFieldEnum | RecruitPostScalarFieldEnum[]
+  }
+
+  /**
+   * RecruitPost create
+   */
+  export type RecruitPostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RecruitPost.
+     */
+    data: XOR<RecruitPostCreateInput, RecruitPostUncheckedCreateInput>
+  }
+
+  /**
+   * RecruitPost createMany
+   */
+  export type RecruitPostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RecruitPosts.
+     */
+    data: RecruitPostCreateManyInput | RecruitPostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RecruitPost createManyAndReturn
+   */
+  export type RecruitPostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * The data used to create many RecruitPosts.
+     */
+    data: RecruitPostCreateManyInput | RecruitPostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RecruitPost update
+   */
+  export type RecruitPostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RecruitPost.
+     */
+    data: XOR<RecruitPostUpdateInput, RecruitPostUncheckedUpdateInput>
+    /**
+     * Choose, which RecruitPost to update.
+     */
+    where: RecruitPostWhereUniqueInput
+  }
+
+  /**
+   * RecruitPost updateMany
+   */
+  export type RecruitPostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RecruitPosts.
+     */
+    data: XOR<RecruitPostUpdateManyMutationInput, RecruitPostUncheckedUpdateManyInput>
+    /**
+     * Filter which RecruitPosts to update
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * Limit how many RecruitPosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecruitPost updateManyAndReturn
+   */
+  export type RecruitPostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * The data used to update RecruitPosts.
+     */
+    data: XOR<RecruitPostUpdateManyMutationInput, RecruitPostUncheckedUpdateManyInput>
+    /**
+     * Filter which RecruitPosts to update
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * Limit how many RecruitPosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecruitPost upsert
+   */
+  export type RecruitPostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RecruitPost to update in case it exists.
+     */
+    where: RecruitPostWhereUniqueInput
+    /**
+     * In case the RecruitPost found by the `where` argument doesn't exist, create a new RecruitPost with this data.
+     */
+    create: XOR<RecruitPostCreateInput, RecruitPostUncheckedCreateInput>
+    /**
+     * In case the RecruitPost was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RecruitPostUpdateInput, RecruitPostUncheckedUpdateInput>
+  }
+
+  /**
+   * RecruitPost delete
+   */
+  export type RecruitPostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+    /**
+     * Filter which RecruitPost to delete.
+     */
+    where: RecruitPostWhereUniqueInput
+  }
+
+  /**
+   * RecruitPost deleteMany
+   */
+  export type RecruitPostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RecruitPosts to delete
+     */
+    where?: RecruitPostWhereInput
+    /**
+     * Limit how many RecruitPosts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecruitPost.applicants
+   */
+  export type RecruitPost$applicantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    where?: ApplicantWhereInput
+    orderBy?: ApplicantOrderByWithRelationInput | ApplicantOrderByWithRelationInput[]
+    cursor?: ApplicantWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApplicantScalarFieldEnum | ApplicantScalarFieldEnum[]
+  }
+
+  /**
+   * RecruitPost without action
+   */
+  export type RecruitPostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecruitPost
+     */
+    select?: RecruitPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecruitPost
+     */
+    omit?: RecruitPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecruitPostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Applicant
+   */
+
+  export type AggregateApplicant = {
+    _count: ApplicantCountAggregateOutputType | null
+    _avg: ApplicantAvgAggregateOutputType | null
+    _sum: ApplicantSumAggregateOutputType | null
+    _min: ApplicantMinAggregateOutputType | null
+    _max: ApplicantMaxAggregateOutputType | null
+  }
+
+  export type ApplicantAvgAggregateOutputType = {
+    id: number | null
+    recruitPostId: number | null
+  }
+
+  export type ApplicantSumAggregateOutputType = {
+    id: number | null
+    recruitPostId: number | null
+  }
+
+  export type ApplicantMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    message: string | null
+    createdAt: Date | null
+    recruitPostId: number | null
+  }
+
+  export type ApplicantMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    message: string | null
+    createdAt: Date | null
+    recruitPostId: number | null
+  }
+
+  export type ApplicantCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    message: number
+    createdAt: number
+    recruitPostId: number
+    _all: number
+  }
+
+
+  export type ApplicantAvgAggregateInputType = {
+    id?: true
+    recruitPostId?: true
+  }
+
+  export type ApplicantSumAggregateInputType = {
+    id?: true
+    recruitPostId?: true
+  }
+
+  export type ApplicantMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    message?: true
+    createdAt?: true
+    recruitPostId?: true
+  }
+
+  export type ApplicantMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    message?: true
+    createdAt?: true
+    recruitPostId?: true
+  }
+
+  export type ApplicantCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    message?: true
+    createdAt?: true
+    recruitPostId?: true
+    _all?: true
+  }
+
+  export type ApplicantAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Applicant to aggregate.
+     */
+    where?: ApplicantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Applicants to fetch.
+     */
+    orderBy?: ApplicantOrderByWithRelationInput | ApplicantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApplicantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Applicants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Applicants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Applicants
+    **/
+    _count?: true | ApplicantCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApplicantAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApplicantSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApplicantMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApplicantMaxAggregateInputType
+  }
+
+  export type GetApplicantAggregateType<T extends ApplicantAggregateArgs> = {
+        [P in keyof T & keyof AggregateApplicant]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApplicant[P]>
+      : GetScalarType<T[P], AggregateApplicant[P]>
+  }
+
+
+
+
+  export type ApplicantGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApplicantWhereInput
+    orderBy?: ApplicantOrderByWithAggregationInput | ApplicantOrderByWithAggregationInput[]
+    by: ApplicantScalarFieldEnum[] | ApplicantScalarFieldEnum
+    having?: ApplicantScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApplicantCountAggregateInputType | true
+    _avg?: ApplicantAvgAggregateInputType
+    _sum?: ApplicantSumAggregateInputType
+    _min?: ApplicantMinAggregateInputType
+    _max?: ApplicantMaxAggregateInputType
+  }
+
+  export type ApplicantGroupByOutputType = {
+    id: number
+    name: string
+    email: string
+    message: string | null
+    createdAt: Date
+    recruitPostId: number
+    _count: ApplicantCountAggregateOutputType | null
+    _avg: ApplicantAvgAggregateOutputType | null
+    _sum: ApplicantSumAggregateOutputType | null
+    _min: ApplicantMinAggregateOutputType | null
+    _max: ApplicantMaxAggregateOutputType | null
+  }
+
+  type GetApplicantGroupByPayload<T extends ApplicantGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApplicantGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApplicantGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApplicantGroupByOutputType[P]>
+            : GetScalarType<T[P], ApplicantGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApplicantSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    message?: boolean
+    createdAt?: boolean
+    recruitPostId?: boolean
+    recruitPost?: boolean | RecruitPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["applicant"]>
+
+  export type ApplicantSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    message?: boolean
+    createdAt?: boolean
+    recruitPostId?: boolean
+    recruitPost?: boolean | RecruitPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["applicant"]>
+
+  export type ApplicantSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    message?: boolean
+    createdAt?: boolean
+    recruitPostId?: boolean
+    recruitPost?: boolean | RecruitPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["applicant"]>
+
+  export type ApplicantSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    message?: boolean
+    createdAt?: boolean
+    recruitPostId?: boolean
+  }
+
+  export type ApplicantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "message" | "createdAt" | "recruitPostId", ExtArgs["result"]["applicant"]>
+  export type ApplicantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recruitPost?: boolean | RecruitPostDefaultArgs<ExtArgs>
+  }
+  export type ApplicantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recruitPost?: boolean | RecruitPostDefaultArgs<ExtArgs>
+  }
+  export type ApplicantIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recruitPost?: boolean | RecruitPostDefaultArgs<ExtArgs>
+  }
+
+  export type $ApplicantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Applicant"
+    objects: {
+      recruitPost: Prisma.$RecruitPostPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      email: string
+      message: string | null
+      createdAt: Date
+      recruitPostId: number
+    }, ExtArgs["result"]["applicant"]>
+    composites: {}
+  }
+
+  type ApplicantGetPayload<S extends boolean | null | undefined | ApplicantDefaultArgs> = $Result.GetResult<Prisma.$ApplicantPayload, S>
+
+  type ApplicantCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApplicantFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApplicantCountAggregateInputType | true
+    }
+
+  export interface ApplicantDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Applicant'], meta: { name: 'Applicant' } }
+    /**
+     * Find zero or one Applicant that matches the filter.
+     * @param {ApplicantFindUniqueArgs} args - Arguments to find a Applicant
+     * @example
+     * // Get one Applicant
+     * const applicant = await prisma.applicant.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApplicantFindUniqueArgs>(args: SelectSubset<T, ApplicantFindUniqueArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Applicant that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApplicantFindUniqueOrThrowArgs} args - Arguments to find a Applicant
+     * @example
+     * // Get one Applicant
+     * const applicant = await prisma.applicant.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApplicantFindUniqueOrThrowArgs>(args: SelectSubset<T, ApplicantFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Applicant that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantFindFirstArgs} args - Arguments to find a Applicant
+     * @example
+     * // Get one Applicant
+     * const applicant = await prisma.applicant.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApplicantFindFirstArgs>(args?: SelectSubset<T, ApplicantFindFirstArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Applicant that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantFindFirstOrThrowArgs} args - Arguments to find a Applicant
+     * @example
+     * // Get one Applicant
+     * const applicant = await prisma.applicant.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApplicantFindFirstOrThrowArgs>(args?: SelectSubset<T, ApplicantFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Applicants that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Applicants
+     * const applicants = await prisma.applicant.findMany()
+     * 
+     * // Get first 10 Applicants
+     * const applicants = await prisma.applicant.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const applicantWithIdOnly = await prisma.applicant.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApplicantFindManyArgs>(args?: SelectSubset<T, ApplicantFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Applicant.
+     * @param {ApplicantCreateArgs} args - Arguments to create a Applicant.
+     * @example
+     * // Create one Applicant
+     * const Applicant = await prisma.applicant.create({
+     *   data: {
+     *     // ... data to create a Applicant
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApplicantCreateArgs>(args: SelectSubset<T, ApplicantCreateArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Applicants.
+     * @param {ApplicantCreateManyArgs} args - Arguments to create many Applicants.
+     * @example
+     * // Create many Applicants
+     * const applicant = await prisma.applicant.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApplicantCreateManyArgs>(args?: SelectSubset<T, ApplicantCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Applicants and returns the data saved in the database.
+     * @param {ApplicantCreateManyAndReturnArgs} args - Arguments to create many Applicants.
+     * @example
+     * // Create many Applicants
+     * const applicant = await prisma.applicant.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Applicants and only return the `id`
+     * const applicantWithIdOnly = await prisma.applicant.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApplicantCreateManyAndReturnArgs>(args?: SelectSubset<T, ApplicantCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Applicant.
+     * @param {ApplicantDeleteArgs} args - Arguments to delete one Applicant.
+     * @example
+     * // Delete one Applicant
+     * const Applicant = await prisma.applicant.delete({
+     *   where: {
+     *     // ... filter to delete one Applicant
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApplicantDeleteArgs>(args: SelectSubset<T, ApplicantDeleteArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Applicant.
+     * @param {ApplicantUpdateArgs} args - Arguments to update one Applicant.
+     * @example
+     * // Update one Applicant
+     * const applicant = await prisma.applicant.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApplicantUpdateArgs>(args: SelectSubset<T, ApplicantUpdateArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Applicants.
+     * @param {ApplicantDeleteManyArgs} args - Arguments to filter Applicants to delete.
+     * @example
+     * // Delete a few Applicants
+     * const { count } = await prisma.applicant.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApplicantDeleteManyArgs>(args?: SelectSubset<T, ApplicantDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Applicants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Applicants
+     * const applicant = await prisma.applicant.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApplicantUpdateManyArgs>(args: SelectSubset<T, ApplicantUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Applicants and returns the data updated in the database.
+     * @param {ApplicantUpdateManyAndReturnArgs} args - Arguments to update many Applicants.
+     * @example
+     * // Update many Applicants
+     * const applicant = await prisma.applicant.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Applicants and only return the `id`
+     * const applicantWithIdOnly = await prisma.applicant.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApplicantUpdateManyAndReturnArgs>(args: SelectSubset<T, ApplicantUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Applicant.
+     * @param {ApplicantUpsertArgs} args - Arguments to update or create a Applicant.
+     * @example
+     * // Update or create a Applicant
+     * const applicant = await prisma.applicant.upsert({
+     *   create: {
+     *     // ... data to create a Applicant
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Applicant we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApplicantUpsertArgs>(args: SelectSubset<T, ApplicantUpsertArgs<ExtArgs>>): Prisma__ApplicantClient<$Result.GetResult<Prisma.$ApplicantPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Applicants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantCountArgs} args - Arguments to filter Applicants to count.
+     * @example
+     * // Count the number of Applicants
+     * const count = await prisma.applicant.count({
+     *   where: {
+     *     // ... the filter for the Applicants we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApplicantCountArgs>(
+      args?: Subset<T, ApplicantCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApplicantCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Applicant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApplicantAggregateArgs>(args: Subset<T, ApplicantAggregateArgs>): Prisma.PrismaPromise<GetApplicantAggregateType<T>>
+
+    /**
+     * Group by Applicant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApplicantGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApplicantGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApplicantGroupByArgs['orderBy'] }
+        : { orderBy?: ApplicantGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApplicantGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApplicantGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Applicant model
+   */
+  readonly fields: ApplicantFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Applicant.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApplicantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    recruitPost<T extends RecruitPostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RecruitPostDefaultArgs<ExtArgs>>): Prisma__RecruitPostClient<$Result.GetResult<Prisma.$RecruitPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Applicant model
+   */
+  interface ApplicantFieldRefs {
+    readonly id: FieldRef<"Applicant", 'Int'>
+    readonly name: FieldRef<"Applicant", 'String'>
+    readonly email: FieldRef<"Applicant", 'String'>
+    readonly message: FieldRef<"Applicant", 'String'>
+    readonly createdAt: FieldRef<"Applicant", 'DateTime'>
+    readonly recruitPostId: FieldRef<"Applicant", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Applicant findUnique
+   */
+  export type ApplicantFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * Filter, which Applicant to fetch.
+     */
+    where: ApplicantWhereUniqueInput
+  }
+
+  /**
+   * Applicant findUniqueOrThrow
+   */
+  export type ApplicantFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * Filter, which Applicant to fetch.
+     */
+    where: ApplicantWhereUniqueInput
+  }
+
+  /**
+   * Applicant findFirst
+   */
+  export type ApplicantFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * Filter, which Applicant to fetch.
+     */
+    where?: ApplicantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Applicants to fetch.
+     */
+    orderBy?: ApplicantOrderByWithRelationInput | ApplicantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Applicants.
+     */
+    cursor?: ApplicantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Applicants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Applicants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Applicants.
+     */
+    distinct?: ApplicantScalarFieldEnum | ApplicantScalarFieldEnum[]
+  }
+
+  /**
+   * Applicant findFirstOrThrow
+   */
+  export type ApplicantFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * Filter, which Applicant to fetch.
+     */
+    where?: ApplicantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Applicants to fetch.
+     */
+    orderBy?: ApplicantOrderByWithRelationInput | ApplicantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Applicants.
+     */
+    cursor?: ApplicantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Applicants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Applicants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Applicants.
+     */
+    distinct?: ApplicantScalarFieldEnum | ApplicantScalarFieldEnum[]
+  }
+
+  /**
+   * Applicant findMany
+   */
+  export type ApplicantFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * Filter, which Applicants to fetch.
+     */
+    where?: ApplicantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Applicants to fetch.
+     */
+    orderBy?: ApplicantOrderByWithRelationInput | ApplicantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Applicants.
+     */
+    cursor?: ApplicantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Applicants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Applicants.
+     */
+    skip?: number
+    distinct?: ApplicantScalarFieldEnum | ApplicantScalarFieldEnum[]
+  }
+
+  /**
+   * Applicant create
+   */
+  export type ApplicantCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Applicant.
+     */
+    data: XOR<ApplicantCreateInput, ApplicantUncheckedCreateInput>
+  }
+
+  /**
+   * Applicant createMany
+   */
+  export type ApplicantCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Applicants.
+     */
+    data: ApplicantCreateManyInput | ApplicantCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Applicant createManyAndReturn
+   */
+  export type ApplicantCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * The data used to create many Applicants.
+     */
+    data: ApplicantCreateManyInput | ApplicantCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Applicant update
+   */
+  export type ApplicantUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Applicant.
+     */
+    data: XOR<ApplicantUpdateInput, ApplicantUncheckedUpdateInput>
+    /**
+     * Choose, which Applicant to update.
+     */
+    where: ApplicantWhereUniqueInput
+  }
+
+  /**
+   * Applicant updateMany
+   */
+  export type ApplicantUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Applicants.
+     */
+    data: XOR<ApplicantUpdateManyMutationInput, ApplicantUncheckedUpdateManyInput>
+    /**
+     * Filter which Applicants to update
+     */
+    where?: ApplicantWhereInput
+    /**
+     * Limit how many Applicants to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Applicant updateManyAndReturn
+   */
+  export type ApplicantUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * The data used to update Applicants.
+     */
+    data: XOR<ApplicantUpdateManyMutationInput, ApplicantUncheckedUpdateManyInput>
+    /**
+     * Filter which Applicants to update
+     */
+    where?: ApplicantWhereInput
+    /**
+     * Limit how many Applicants to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Applicant upsert
+   */
+  export type ApplicantUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Applicant to update in case it exists.
+     */
+    where: ApplicantWhereUniqueInput
+    /**
+     * In case the Applicant found by the `where` argument doesn't exist, create a new Applicant with this data.
+     */
+    create: XOR<ApplicantCreateInput, ApplicantUncheckedCreateInput>
+    /**
+     * In case the Applicant was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApplicantUpdateInput, ApplicantUncheckedUpdateInput>
+  }
+
+  /**
+   * Applicant delete
+   */
+  export type ApplicantDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+    /**
+     * Filter which Applicant to delete.
+     */
+    where: ApplicantWhereUniqueInput
+  }
+
+  /**
+   * Applicant deleteMany
+   */
+  export type ApplicantDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Applicants to delete
+     */
+    where?: ApplicantWhereInput
+    /**
+     * Limit how many Applicants to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Applicant without action
+   */
+  export type ApplicantDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Applicant
+     */
+    select?: ApplicantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Applicant
+     */
+    omit?: ApplicantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApplicantInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1931,10 +4413,36 @@ export namespace Prisma {
     nickname: 'nickname',
     phoneNumber: 'phoneNumber',
     profileImage: 'profileImage',
+    role: 'role',
     createdAt: 'createdAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const RecruitPostScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    thumbnailUrl: 'thumbnailUrl',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    createdAt: 'createdAt'
+  };
+
+  export type RecruitPostScalarFieldEnum = (typeof RecruitPostScalarFieldEnum)[keyof typeof RecruitPostScalarFieldEnum]
+
+
+  export const ApplicantScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    message: 'message',
+    createdAt: 'createdAt',
+    recruitPostId: 'recruitPostId'
+  };
+
+  export type ApplicantScalarFieldEnum = (typeof ApplicantScalarFieldEnum)[keyof typeof ApplicantScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1995,6 +4503,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'UserRole'
+   */
+  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole[]'
+   */
+  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2034,6 +4556,7 @@ export namespace Prisma {
     nickname?: StringFilter<"User"> | string
     phoneNumber?: StringNullableFilter<"User"> | string | null
     profileImage?: StringNullableFilter<"User"> | string | null
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
   }
 
@@ -2043,6 +4566,7 @@ export namespace Prisma {
     nickname?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     profileImage?: SortOrderInput | SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -2055,6 +4579,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     profileImage?: StringNullableFilter<"User"> | string | null
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
   }, "id" | "email" | "nickname" | "phoneNumber">
 
@@ -2064,6 +4589,7 @@ export namespace Prisma {
     nickname?: SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     profileImage?: SortOrderInput | SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -2081,7 +4607,137 @@ export namespace Prisma {
     nickname?: StringWithAggregatesFilter<"User"> | string
     phoneNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
     profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
+    role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type RecruitPostWhereInput = {
+    AND?: RecruitPostWhereInput | RecruitPostWhereInput[]
+    OR?: RecruitPostWhereInput[]
+    NOT?: RecruitPostWhereInput | RecruitPostWhereInput[]
+    id?: IntFilter<"RecruitPost"> | number
+    title?: StringFilter<"RecruitPost"> | string
+    description?: StringFilter<"RecruitPost"> | string
+    thumbnailUrl?: StringNullableFilter<"RecruitPost"> | string | null
+    startDate?: DateTimeFilter<"RecruitPost"> | Date | string
+    endDate?: DateTimeFilter<"RecruitPost"> | Date | string
+    createdAt?: DateTimeFilter<"RecruitPost"> | Date | string
+    applicants?: ApplicantListRelationFilter
+  }
+
+  export type RecruitPostOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    applicants?: ApplicantOrderByRelationAggregateInput
+  }
+
+  export type RecruitPostWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: RecruitPostWhereInput | RecruitPostWhereInput[]
+    OR?: RecruitPostWhereInput[]
+    NOT?: RecruitPostWhereInput | RecruitPostWhereInput[]
+    title?: StringFilter<"RecruitPost"> | string
+    description?: StringFilter<"RecruitPost"> | string
+    thumbnailUrl?: StringNullableFilter<"RecruitPost"> | string | null
+    startDate?: DateTimeFilter<"RecruitPost"> | Date | string
+    endDate?: DateTimeFilter<"RecruitPost"> | Date | string
+    createdAt?: DateTimeFilter<"RecruitPost"> | Date | string
+    applicants?: ApplicantListRelationFilter
+  }, "id">
+
+  export type RecruitPostOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    _count?: RecruitPostCountOrderByAggregateInput
+    _avg?: RecruitPostAvgOrderByAggregateInput
+    _max?: RecruitPostMaxOrderByAggregateInput
+    _min?: RecruitPostMinOrderByAggregateInput
+    _sum?: RecruitPostSumOrderByAggregateInput
+  }
+
+  export type RecruitPostScalarWhereWithAggregatesInput = {
+    AND?: RecruitPostScalarWhereWithAggregatesInput | RecruitPostScalarWhereWithAggregatesInput[]
+    OR?: RecruitPostScalarWhereWithAggregatesInput[]
+    NOT?: RecruitPostScalarWhereWithAggregatesInput | RecruitPostScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"RecruitPost"> | number
+    title?: StringWithAggregatesFilter<"RecruitPost"> | string
+    description?: StringWithAggregatesFilter<"RecruitPost"> | string
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"RecruitPost"> | string | null
+    startDate?: DateTimeWithAggregatesFilter<"RecruitPost"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"RecruitPost"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"RecruitPost"> | Date | string
+  }
+
+  export type ApplicantWhereInput = {
+    AND?: ApplicantWhereInput | ApplicantWhereInput[]
+    OR?: ApplicantWhereInput[]
+    NOT?: ApplicantWhereInput | ApplicantWhereInput[]
+    id?: IntFilter<"Applicant"> | number
+    name?: StringFilter<"Applicant"> | string
+    email?: StringFilter<"Applicant"> | string
+    message?: StringNullableFilter<"Applicant"> | string | null
+    createdAt?: DateTimeFilter<"Applicant"> | Date | string
+    recruitPostId?: IntFilter<"Applicant"> | number
+    recruitPost?: XOR<RecruitPostScalarRelationFilter, RecruitPostWhereInput>
+  }
+
+  export type ApplicantOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    message?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    recruitPostId?: SortOrder
+    recruitPost?: RecruitPostOrderByWithRelationInput
+  }
+
+  export type ApplicantWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ApplicantWhereInput | ApplicantWhereInput[]
+    OR?: ApplicantWhereInput[]
+    NOT?: ApplicantWhereInput | ApplicantWhereInput[]
+    name?: StringFilter<"Applicant"> | string
+    email?: StringFilter<"Applicant"> | string
+    message?: StringNullableFilter<"Applicant"> | string | null
+    createdAt?: DateTimeFilter<"Applicant"> | Date | string
+    recruitPostId?: IntFilter<"Applicant"> | number
+    recruitPost?: XOR<RecruitPostScalarRelationFilter, RecruitPostWhereInput>
+  }, "id">
+
+  export type ApplicantOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    message?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    recruitPostId?: SortOrder
+    _count?: ApplicantCountOrderByAggregateInput
+    _avg?: ApplicantAvgOrderByAggregateInput
+    _max?: ApplicantMaxOrderByAggregateInput
+    _min?: ApplicantMinOrderByAggregateInput
+    _sum?: ApplicantSumOrderByAggregateInput
+  }
+
+  export type ApplicantScalarWhereWithAggregatesInput = {
+    AND?: ApplicantScalarWhereWithAggregatesInput | ApplicantScalarWhereWithAggregatesInput[]
+    OR?: ApplicantScalarWhereWithAggregatesInput[]
+    NOT?: ApplicantScalarWhereWithAggregatesInput | ApplicantScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Applicant"> | number
+    name?: StringWithAggregatesFilter<"Applicant"> | string
+    email?: StringWithAggregatesFilter<"Applicant"> | string
+    message?: StringNullableWithAggregatesFilter<"Applicant"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Applicant"> | Date | string
+    recruitPostId?: IntWithAggregatesFilter<"Applicant"> | number
   }
 
   export type UserCreateInput = {
@@ -2089,6 +4745,7 @@ export namespace Prisma {
     nickname: string
     phoneNumber?: string | null
     profileImage?: string | null
+    role?: $Enums.UserRole
     createdAt?: Date | string
   }
 
@@ -2098,6 +4755,7 @@ export namespace Prisma {
     nickname: string
     phoneNumber?: string | null
     profileImage?: string | null
+    role?: $Enums.UserRole
     createdAt?: Date | string
   }
 
@@ -2106,6 +4764,7 @@ export namespace Prisma {
     nickname?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -2115,6 +4774,7 @@ export namespace Prisma {
     nickname?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -2124,6 +4784,7 @@ export namespace Prisma {
     nickname: string
     phoneNumber?: string | null
     profileImage?: string | null
+    role?: $Enums.UserRole
     createdAt?: Date | string
   }
 
@@ -2132,6 +4793,7 @@ export namespace Prisma {
     nickname?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -2141,7 +4803,138 @@ export namespace Prisma {
     nickname?: StringFieldUpdateOperationsInput | string
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecruitPostCreateInput = {
+    title: string
+    description: string
+    thumbnailUrl?: string | null
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    applicants?: ApplicantCreateNestedManyWithoutRecruitPostInput
+  }
+
+  export type RecruitPostUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    thumbnailUrl?: string | null
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+    applicants?: ApplicantUncheckedCreateNestedManyWithoutRecruitPostInput
+  }
+
+  export type RecruitPostUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicants?: ApplicantUpdateManyWithoutRecruitPostNestedInput
+  }
+
+  export type RecruitPostUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicants?: ApplicantUncheckedUpdateManyWithoutRecruitPostNestedInput
+  }
+
+  export type RecruitPostCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    thumbnailUrl?: string | null
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+  }
+
+  export type RecruitPostUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecruitPostUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApplicantCreateInput = {
+    name: string
+    email: string
+    message?: string | null
+    createdAt?: Date | string
+    recruitPost: RecruitPostCreateNestedOneWithoutApplicantsInput
+  }
+
+  export type ApplicantUncheckedCreateInput = {
+    id?: number
+    name: string
+    email: string
+    message?: string | null
+    createdAt?: Date | string
+    recruitPostId: number
+  }
+
+  export type ApplicantUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recruitPost?: RecruitPostUpdateOneRequiredWithoutApplicantsNestedInput
+  }
+
+  export type ApplicantUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recruitPostId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ApplicantCreateManyInput = {
+    id?: number
+    name: string
+    email: string
+    message?: string | null
+    createdAt?: Date | string
+    recruitPostId: number
+  }
+
+  export type ApplicantUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApplicantUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    recruitPostId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2185,6 +4978,13 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type EnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2207,6 +5007,7 @@ export namespace Prisma {
     nickname?: SortOrder
     phoneNumber?: SortOrder
     profileImage?: SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -2220,6 +5021,7 @@ export namespace Prisma {
     nickname?: SortOrder
     phoneNumber?: SortOrder
     profileImage?: SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -2229,6 +5031,7 @@ export namespace Prisma {
     nickname?: SortOrder
     phoneNumber?: SortOrder
     profileImage?: SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -2288,6 +5091,16 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2302,12 +5115,106 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type ApplicantListRelationFilter = {
+    every?: ApplicantWhereInput
+    some?: ApplicantWhereInput
+    none?: ApplicantWhereInput
+  }
+
+  export type ApplicantOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RecruitPostCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RecruitPostAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type RecruitPostMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RecruitPostMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RecruitPostSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type RecruitPostScalarRelationFilter = {
+    is?: RecruitPostWhereInput
+    isNot?: RecruitPostWhereInput
+  }
+
+  export type ApplicantCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    recruitPostId?: SortOrder
+  }
+
+  export type ApplicantAvgOrderByAggregateInput = {
+    id?: SortOrder
+    recruitPostId?: SortOrder
+  }
+
+  export type ApplicantMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    recruitPostId?: SortOrder
+  }
+
+  export type ApplicantMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    recruitPostId?: SortOrder
+  }
+
+  export type ApplicantSumOrderByAggregateInput = {
+    id?: SortOrder
+    recruitPostId?: SortOrder
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type EnumUserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.UserRole
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -2320,6 +5227,62 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type ApplicantCreateNestedManyWithoutRecruitPostInput = {
+    create?: XOR<ApplicantCreateWithoutRecruitPostInput, ApplicantUncheckedCreateWithoutRecruitPostInput> | ApplicantCreateWithoutRecruitPostInput[] | ApplicantUncheckedCreateWithoutRecruitPostInput[]
+    connectOrCreate?: ApplicantCreateOrConnectWithoutRecruitPostInput | ApplicantCreateOrConnectWithoutRecruitPostInput[]
+    createMany?: ApplicantCreateManyRecruitPostInputEnvelope
+    connect?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+  }
+
+  export type ApplicantUncheckedCreateNestedManyWithoutRecruitPostInput = {
+    create?: XOR<ApplicantCreateWithoutRecruitPostInput, ApplicantUncheckedCreateWithoutRecruitPostInput> | ApplicantCreateWithoutRecruitPostInput[] | ApplicantUncheckedCreateWithoutRecruitPostInput[]
+    connectOrCreate?: ApplicantCreateOrConnectWithoutRecruitPostInput | ApplicantCreateOrConnectWithoutRecruitPostInput[]
+    createMany?: ApplicantCreateManyRecruitPostInputEnvelope
+    connect?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+  }
+
+  export type ApplicantUpdateManyWithoutRecruitPostNestedInput = {
+    create?: XOR<ApplicantCreateWithoutRecruitPostInput, ApplicantUncheckedCreateWithoutRecruitPostInput> | ApplicantCreateWithoutRecruitPostInput[] | ApplicantUncheckedCreateWithoutRecruitPostInput[]
+    connectOrCreate?: ApplicantCreateOrConnectWithoutRecruitPostInput | ApplicantCreateOrConnectWithoutRecruitPostInput[]
+    upsert?: ApplicantUpsertWithWhereUniqueWithoutRecruitPostInput | ApplicantUpsertWithWhereUniqueWithoutRecruitPostInput[]
+    createMany?: ApplicantCreateManyRecruitPostInputEnvelope
+    set?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    disconnect?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    delete?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    connect?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    update?: ApplicantUpdateWithWhereUniqueWithoutRecruitPostInput | ApplicantUpdateWithWhereUniqueWithoutRecruitPostInput[]
+    updateMany?: ApplicantUpdateManyWithWhereWithoutRecruitPostInput | ApplicantUpdateManyWithWhereWithoutRecruitPostInput[]
+    deleteMany?: ApplicantScalarWhereInput | ApplicantScalarWhereInput[]
+  }
+
+  export type ApplicantUncheckedUpdateManyWithoutRecruitPostNestedInput = {
+    create?: XOR<ApplicantCreateWithoutRecruitPostInput, ApplicantUncheckedCreateWithoutRecruitPostInput> | ApplicantCreateWithoutRecruitPostInput[] | ApplicantUncheckedCreateWithoutRecruitPostInput[]
+    connectOrCreate?: ApplicantCreateOrConnectWithoutRecruitPostInput | ApplicantCreateOrConnectWithoutRecruitPostInput[]
+    upsert?: ApplicantUpsertWithWhereUniqueWithoutRecruitPostInput | ApplicantUpsertWithWhereUniqueWithoutRecruitPostInput[]
+    createMany?: ApplicantCreateManyRecruitPostInputEnvelope
+    set?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    disconnect?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    delete?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    connect?: ApplicantWhereUniqueInput | ApplicantWhereUniqueInput[]
+    update?: ApplicantUpdateWithWhereUniqueWithoutRecruitPostInput | ApplicantUpdateWithWhereUniqueWithoutRecruitPostInput[]
+    updateMany?: ApplicantUpdateManyWithWhereWithoutRecruitPostInput | ApplicantUpdateManyWithWhereWithoutRecruitPostInput[]
+    deleteMany?: ApplicantScalarWhereInput | ApplicantScalarWhereInput[]
+  }
+
+  export type RecruitPostCreateNestedOneWithoutApplicantsInput = {
+    create?: XOR<RecruitPostCreateWithoutApplicantsInput, RecruitPostUncheckedCreateWithoutApplicantsInput>
+    connectOrCreate?: RecruitPostCreateOrConnectWithoutApplicantsInput
+    connect?: RecruitPostWhereUniqueInput
+  }
+
+  export type RecruitPostUpdateOneRequiredWithoutApplicantsNestedInput = {
+    create?: XOR<RecruitPostCreateWithoutApplicantsInput, RecruitPostUncheckedCreateWithoutApplicantsInput>
+    connectOrCreate?: RecruitPostCreateOrConnectWithoutApplicantsInput
+    upsert?: RecruitPostUpsertWithoutApplicantsInput
+    connect?: RecruitPostWhereUniqueInput
+    update?: XOR<XOR<RecruitPostUpdateToOneWithWhereWithoutApplicantsInput, RecruitPostUpdateWithoutApplicantsInput>, RecruitPostUncheckedUpdateWithoutApplicantsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2359,6 +5322,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2444,6 +5414,16 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2456,6 +5436,144 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type ApplicantCreateWithoutRecruitPostInput = {
+    name: string
+    email: string
+    message?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ApplicantUncheckedCreateWithoutRecruitPostInput = {
+    id?: number
+    name: string
+    email: string
+    message?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ApplicantCreateOrConnectWithoutRecruitPostInput = {
+    where: ApplicantWhereUniqueInput
+    create: XOR<ApplicantCreateWithoutRecruitPostInput, ApplicantUncheckedCreateWithoutRecruitPostInput>
+  }
+
+  export type ApplicantCreateManyRecruitPostInputEnvelope = {
+    data: ApplicantCreateManyRecruitPostInput | ApplicantCreateManyRecruitPostInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApplicantUpsertWithWhereUniqueWithoutRecruitPostInput = {
+    where: ApplicantWhereUniqueInput
+    update: XOR<ApplicantUpdateWithoutRecruitPostInput, ApplicantUncheckedUpdateWithoutRecruitPostInput>
+    create: XOR<ApplicantCreateWithoutRecruitPostInput, ApplicantUncheckedCreateWithoutRecruitPostInput>
+  }
+
+  export type ApplicantUpdateWithWhereUniqueWithoutRecruitPostInput = {
+    where: ApplicantWhereUniqueInput
+    data: XOR<ApplicantUpdateWithoutRecruitPostInput, ApplicantUncheckedUpdateWithoutRecruitPostInput>
+  }
+
+  export type ApplicantUpdateManyWithWhereWithoutRecruitPostInput = {
+    where: ApplicantScalarWhereInput
+    data: XOR<ApplicantUpdateManyMutationInput, ApplicantUncheckedUpdateManyWithoutRecruitPostInput>
+  }
+
+  export type ApplicantScalarWhereInput = {
+    AND?: ApplicantScalarWhereInput | ApplicantScalarWhereInput[]
+    OR?: ApplicantScalarWhereInput[]
+    NOT?: ApplicantScalarWhereInput | ApplicantScalarWhereInput[]
+    id?: IntFilter<"Applicant"> | number
+    name?: StringFilter<"Applicant"> | string
+    email?: StringFilter<"Applicant"> | string
+    message?: StringNullableFilter<"Applicant"> | string | null
+    createdAt?: DateTimeFilter<"Applicant"> | Date | string
+    recruitPostId?: IntFilter<"Applicant"> | number
+  }
+
+  export type RecruitPostCreateWithoutApplicantsInput = {
+    title: string
+    description: string
+    thumbnailUrl?: string | null
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+  }
+
+  export type RecruitPostUncheckedCreateWithoutApplicantsInput = {
+    id?: number
+    title: string
+    description: string
+    thumbnailUrl?: string | null
+    startDate: Date | string
+    endDate: Date | string
+    createdAt?: Date | string
+  }
+
+  export type RecruitPostCreateOrConnectWithoutApplicantsInput = {
+    where: RecruitPostWhereUniqueInput
+    create: XOR<RecruitPostCreateWithoutApplicantsInput, RecruitPostUncheckedCreateWithoutApplicantsInput>
+  }
+
+  export type RecruitPostUpsertWithoutApplicantsInput = {
+    update: XOR<RecruitPostUpdateWithoutApplicantsInput, RecruitPostUncheckedUpdateWithoutApplicantsInput>
+    create: XOR<RecruitPostCreateWithoutApplicantsInput, RecruitPostUncheckedCreateWithoutApplicantsInput>
+    where?: RecruitPostWhereInput
+  }
+
+  export type RecruitPostUpdateToOneWithWhereWithoutApplicantsInput = {
+    where?: RecruitPostWhereInput
+    data: XOR<RecruitPostUpdateWithoutApplicantsInput, RecruitPostUncheckedUpdateWithoutApplicantsInput>
+  }
+
+  export type RecruitPostUpdateWithoutApplicantsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecruitPostUncheckedUpdateWithoutApplicantsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApplicantCreateManyRecruitPostInput = {
+    id?: number
+    name: string
+    email: string
+    message?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ApplicantUpdateWithoutRecruitPostInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApplicantUncheckedUpdateWithoutRecruitPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApplicantUncheckedUpdateManyWithoutRecruitPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
