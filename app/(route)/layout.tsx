@@ -16,7 +16,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
   console.log(user);
   return (
     <div>
-      <Header />
+      <Header session={session} user={user} />
       {children}
     </div>
   );

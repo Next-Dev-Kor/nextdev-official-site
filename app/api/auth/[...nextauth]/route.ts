@@ -43,8 +43,8 @@ export const authOptions: NextAuthOptions = {
     async jwt({
       token,
       user,
-      account,
-    }: {
+    }: // account,
+    {
       token: JWT;
       user?: User;
       account?: Account | null;
@@ -52,9 +52,9 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id!;
       }
-      if (account?.access_token) {
-        token.accessToken = account.access_token;
-      }
+      // if (account?.access_token) {
+      //   token.accessToken = account.access_token;
+      // }
       return token;
     },
 
