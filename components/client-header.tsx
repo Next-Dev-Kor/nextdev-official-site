@@ -65,7 +65,6 @@ const ClientHeader = ({ session }: ClientHeaderProps) => {
 
   return (
     <div className="flex items-center gap-4">
-      {/* Desktop Navigation */}
       <div className="hidden md:flex items-center gap-4">
         {NAV_MENUS.map((menu) => (
           <div key={menu.id} className="cursor-pointer">
@@ -73,8 +72,6 @@ const ClientHeader = ({ session }: ClientHeaderProps) => {
           </div>
         ))}
       </div>
-
-      {/* Mobile Navigation */}
 
       {session ? (
         <UserMenu />

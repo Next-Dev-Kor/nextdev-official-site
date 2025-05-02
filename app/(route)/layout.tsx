@@ -13,7 +13,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
         where: { id: Number(userId) },
       })
     : null;
-  console.log(user);
+
   return (
     <div>
       <Header session={session} user={user} />
