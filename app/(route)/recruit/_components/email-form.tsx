@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { toast } from "sonner";
 import axios from "axios";
-import RecruitAPIs from "@/apis/recruit";
 
 interface EmailFormProps {
   userId: number | null;
@@ -23,6 +22,9 @@ type EmailFormType = z.infer<typeof emailSchema>;
 const EmailForm = ({ userId }: EmailFormProps) => {
   const form = useForm<EmailFormType>({
     resolver: zodResolver(emailSchema),
+    defaultValues: {
+      email: "",
+    },
   });
 
   const onSubmit = async (data: EmailFormType) => {
@@ -32,10 +34,14 @@ const EmailForm = ({ userId }: EmailFormProps) => {
     }
 
     try {
-      const response = await RecruitAPIs.updateEmail(data.email, userId);
-      console.log(response, "<<<<<");
-      toast.success("이메일 알림이 등록되었습니다.");
-      form.reset();
+      const response = await axios.post("/api/recruit/notification", {
+        email: data.email,
+      });
+      console.log(response);
+      if (response.data.success) {
+        toast.success("이메일 알림이 등록되었습니다.");
+        form.reset();
+      }
     } catch (error) {
       console.error("이메일 등록 중 오류 발생:", error);
       if (axios.isAxiosError(error)) {
