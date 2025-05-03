@@ -2,9 +2,15 @@
 import Link from "next/link";
 import RecruitAPIs from "@/lib/apis/recruit";
 import { RecruitPost } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import EmailForm from "@/app/(route)/recruit/_components/email-form";
 
 const RecruitPage = async () => {
   const posts: RecruitPost[] = await RecruitAPIs.getPosts();
+
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id ? Number(session.user.id) : null;
 
   return (
     <div className="grid gap-6 p-5 py-24">
@@ -22,9 +28,7 @@ const RecruitPage = async () => {
           </Link>
         ))
       ) : (
-        <div className="text-center text-muted-foreground">
-          현재 진행 중인 모집이 없습니다.
-        </div>
+        <EmailForm userId={userId} />
       )}
     </div>
   );

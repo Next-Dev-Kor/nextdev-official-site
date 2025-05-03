@@ -14,17 +14,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user }: { user: User }) {
       try {
-        const email = user.email ?? `${user.name}@kakao.fake`;
-
         const dbUser = await prisma.user.upsert({
-          where: { email },
+          where: { nickname: user.name ?? "Unknown" },
           update: {
-            nickname: user.name ?? "Unknown",
             profileImage: user.image ?? null,
             role: "SUPER",
           },
           create: {
-            email,
+            email: user.email ?? null,
             nickname: user.name ?? "Unknown",
             profileImage: user.image ?? null,
             role: "SUPER",
