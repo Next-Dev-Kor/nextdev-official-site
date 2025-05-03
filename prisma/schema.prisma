@@ -9,14 +9,21 @@ datasource db {
 }
 
 model User {
-  id              Int              @id @default(autoincrement())
-  email           String?          @unique
-  nickname        String           @unique
-  phoneNumber     String?          @unique
+  id              Int               @id @default(autoincrement())
+  email           String?           @unique
+  nickname        String            @unique
+  phoneNumber     String?           @unique
   profileImage    String?
-  role            UserRole         @default(USER)
-  createdAt       DateTime         @default(now())
-  recruitWaitlist RecruitWaitlist?
+  role            UserRole          @default(USER)
+  createdAt       DateTime          @default(now())
+  recruitWaitlist RecruitWaitlist[] // ✅ 유저 1명 → 여러 waitlist row 가능
+}
+
+model RecruitWaitlist {
+  id        Int      @id @default(autoincrement())
+  userId    Int                              // ✅ @unique 제거됨
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id])
 }
 
 model RecruitPost {
@@ -38,13 +45,6 @@ model Applicant {
   createdAt     DateTime    @default(now())
   recruitPostId Int
   recruitPost   RecruitPost @relation(fields: [recruitPostId], references: [id])
-}
-
-model RecruitWaitlist {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique
-  createdAt DateTime @default(now())
-  User      User     @relation(fields: [userId], references: [id])
 }
 
 enum UserRole {
