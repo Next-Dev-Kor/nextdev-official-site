@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       data: { email },
     });
 
-    const isAlreadyInWaitlist = await prisma.recruitWaitlist.findUnique({
+    const isAlreadyInWaitlist = await prisma.recruitWaitlist.findFirst({
       where: { userId },
     });
 

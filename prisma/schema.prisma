@@ -16,12 +16,12 @@ model User {
   profileImage    String?
   role            UserRole          @default(USER)
   createdAt       DateTime          @default(now())
-  recruitWaitlist RecruitWaitlist[] // ✅ 유저 1명 → 여러 waitlist row 가능
+  recruitWaitlist RecruitWaitlist[]
 }
 
 model RecruitWaitlist {
   id        Int      @id @default(autoincrement())
-  userId    Int                              // ✅ @unique 제거됨
+  userId    Int
   createdAt DateTime @default(now())
   User      User     @relation(fields: [userId], references: [id])
 }
@@ -34,6 +34,7 @@ model RecruitPost {
   startDate    DateTime
   endDate      DateTime
   createdAt    DateTime    @default(now())
+  position     Position
   applicants   Applicant[]
 }
 
@@ -51,4 +52,13 @@ enum UserRole {
   USER
   ADMIN
   SUPER
+}
+
+enum Position {
+  FRONTEND
+  BACKEND
+  DESIGNER
+  PLANNER
+  AOS
+  IOS
 }
