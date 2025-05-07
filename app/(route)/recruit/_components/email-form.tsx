@@ -63,7 +63,7 @@ const EmailForm = ({ userId }: EmailFormProps) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="relative w-[80%] sm:w-[60%] h-[60px]"
+            className="relative w-[80%] sm:w-[100%] h-[60px]"
           >
             <FormField
               control={form.control}
