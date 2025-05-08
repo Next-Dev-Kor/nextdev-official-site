@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/providers/react-query-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "sonner";
+import Modal from "@/components/modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Modal />
             <Toaster />
           </ThemeProvider>
         </ReactQueryProvider>

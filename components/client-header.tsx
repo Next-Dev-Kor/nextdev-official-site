@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -21,7 +21,7 @@ import { Menu } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { NAV_MENUS } from "@/constants";
-
+import { useModal } from "@/store/use-modal";
 interface ClientHeaderProps {
   session: Session | null;
   user?: User | null;
@@ -29,6 +29,7 @@ interface ClientHeaderProps {
 
 const ClientHeader = ({ session }: ClientHeaderProps) => {
   const [open, setOpen] = useState(false);
+  const { onOpen } = useModal();
 
   const UserMenu = () => (
     <>
@@ -76,12 +77,9 @@ const ClientHeader = ({ session }: ClientHeaderProps) => {
       {session ? (
         <UserMenu />
       ) : (
-        <Button
-          onClick={() => signIn("kakao", { callbackUrl: "/" })}
-          className="bg-[#FEE500] text-black hover:bg-[#FEE500]/90"
-        >
-          카카오로 로그인
-        </Button>
+        <div onClick={() => onOpen("login")} className="">
+          <div>로그인</div>
+        </div>
       )}
       <ModeToggle />
       <div className="md:hidden">
