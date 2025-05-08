@@ -35,6 +35,10 @@ model RecruitPost {
   endDate      DateTime
   createdAt    DateTime    @default(now())
   position     Position
+  company      String
+  location     String
+  salary       String
+  requirements String[]
   applicants   Applicant[]
 }
 
@@ -59,6 +63,4 @@ enum Position {
   BACKEND
   DESIGNER
   PLANNER
-  AOS
-  IOS
 }
