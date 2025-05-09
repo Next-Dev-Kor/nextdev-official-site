@@ -46,7 +46,7 @@ const RecruitPage = async () => {
             아래 3가지 모두 해당되는 분이라면. 누구든 지원 가능해요!
           </span>
         </div>
-        <div className="grid grid-cols-1 px-24 md:px-0 sm:grid-cols-2 md:grid-cols-3 gap-4 py-10">
+        <div className="grid grid-cols-1 px-8 md:px-0 sm:grid-cols-2 md:grid-cols-3 gap-4 py-10">
           {MOCK_DATA.map((item) => (
             <div
               key={item.id}
