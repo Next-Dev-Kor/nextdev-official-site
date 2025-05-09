@@ -6,9 +6,10 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = await params;
     const post = await prisma.recruitPost.findUnique({
       where: {
-        id: parseInt(params.id),
+        id: parseInt(id),
       },
     });
 

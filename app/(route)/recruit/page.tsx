@@ -31,6 +31,7 @@ const RecruitPage = async () => {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id ? Number(session.user.id) : null;
 
+  console.log(posts);
   return (
     <div className="py-24 flex flex-col gap-10 sm:px-4 md:px-8 lg:px-[25%] px-3">
       <div className="w-full max-w-2xl mx-auto mb-8">
@@ -52,7 +53,7 @@ const RecruitPage = async () => {
               key={item.id}
               className="flex flex-col gap-1 items-center justify-center h-[240px] bg-[#181818] border rounded-2xl"
             >
-              <span className="text-lg font-semibold text-black dark:text-white">
+              <span className="text-lg font-semibold text-white ">
                 {item.title}
               </span>
               <span className="text-md text-gray-500">{item.description}</span>

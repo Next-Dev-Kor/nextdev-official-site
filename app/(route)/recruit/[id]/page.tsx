@@ -2,14 +2,9 @@ import { getRecruitDetail } from "@/apis/recruit";
 import { getPositionImage } from "@/utils/position";
 import Image from "next/image";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
+const RecruitDetailPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
 
-const RecruitDetailPage = async ({ params }: PageProps) => {
-  const { id } = params;
   const post = await getRecruitDetail(id);
 
   return (
