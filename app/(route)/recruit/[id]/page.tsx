@@ -2,10 +2,12 @@ import { getRecruitDetail } from "@/apis/recruit";
 import { getPositionImage } from "@/utils/position";
 import Image from "next/image";
 
-const RecruitDetailPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+type Params = Promise<{ id: string }>;
 
-  const post = await getRecruitDetail(id);
+const RecruitDetailPage = async (props: { params: Params }) => {
+  const params = await props.params;
+
+  const post = await getRecruitDetail(params.id);
 
   return (
     <div className="pt-40 flex flex-col gap-16 sm:px-4 md:px-8 lg:px-[25%] px-3">

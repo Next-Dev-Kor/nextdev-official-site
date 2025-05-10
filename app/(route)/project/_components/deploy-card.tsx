@@ -1,7 +1,6 @@
-import { DeployProject } from "@/features/project/types";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { DeployProject } from "@/app/(route)/project/types";
 
 const DeployCard = ({ data }: { data: DeployProject[] }) => {
   return (

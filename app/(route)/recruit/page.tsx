@@ -2,7 +2,7 @@
 import RecruitAPIs from "@/lib/apis/recruit";
 import { RecruitPost } from "@prisma/client";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import EmailForm from "@/app/(route)/recruit/_components/email-form";
 import RecruitPosts from "@/app/(route)/recruit/_components/recruit-posts";
 
@@ -11,16 +11,19 @@ const MOCK_DATA = [
     id: 1,
     title: "IT 창업 및 웹/앱",
     description: "서비스에 관심이 많고",
+    icon: "💻",
   },
   {
     id: 2,
     title: "수도권 내에서",
     description: "활동이 가능한",
+    icon: "✈️",
   },
   {
     id: 3,
     title: "열정적인",
     description: "성향을 가지신분",
+    icon: "🔥",
   },
 ];
 
@@ -53,8 +56,11 @@ const RecruitPage = async () => {
               key={item.id}
               className="flex flex-col gap-1 items-center justify-center h-[240px] bg-[#181818] border rounded-2xl"
             >
-              <span className="text-lg font-semibold text-white ">
-                {item.title}
+              <span className="flex items-center">
+                <span className="mr-2 text-xl">{item.icon}</span>
+                <span className="text-lg font-semibold text-white ">
+                  {item.title}
+                </span>
               </span>
               <span className="text-md text-gray-500">{item.description}</span>
             </div>

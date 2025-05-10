@@ -1,8 +1,9 @@
 import { PropsWithChildren } from "react";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import Header from "@/components/header";
 import prisma from "@/lib/db";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 
 const RootLayout = async ({ children }: PropsWithChildren) => {
   const session = await getServerSession(authOptions);

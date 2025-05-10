@@ -1,15 +1,14 @@
 import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+type Params = Promise<{ id: string }>;
+
+export async function GET(request: Request, props: { params: Params }) {
   try {
-    const { id } = await params;
+    const params = await props.params;
     const post = await prisma.recruitPost.findUnique({
       where: {
-        id: parseInt(id),
+        id: parseInt(params.id),
       },
     });
 
