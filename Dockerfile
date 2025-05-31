@@ -10,10 +10,8 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-# ✅ Prisma Client 생성
 RUN npx prisma generate
 
-# ✅ Next.js 빌드
 RUN pnpm build
 
 EXPOSE 3000
