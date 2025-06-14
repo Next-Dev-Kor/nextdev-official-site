@@ -1,11 +1,14 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
+import { Button } from '@/components/ui/button';
+import { signIn } from 'next-auth/react';
+
+import Image from 'next/image';
+import kakao from '../../public/kakao.png';
 
 const SocialLogin = () => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-[10px]">
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -16,10 +19,10 @@ const SocialLogin = () => {
       </div>
       <Button
         type="button"
-        onClick={() => signIn("kakao", { callbackUrl: "/" })}
-        className="w-full bg-[#FEE500] text-black hover:bg-[#FEE500]/90"
+        onClick={() => signIn('kakao', { callbackUrl: '/' })}
+        className="w-full bg-[#FEE500] text-black hover:bg-[#FEE500]/90 h-15 cursor-pointer"
       >
-        카카오로 로그인
+        <Image src={kakao} alt="kakao" width={18} height={18} /> 카카오 로그인
       </Button>
     </div>
   );
